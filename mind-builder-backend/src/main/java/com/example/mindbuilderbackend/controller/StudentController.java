@@ -2,7 +2,9 @@ package com.example.mindbuilderbackend.controller;
 
 import com.example.mindbuilderbackend.dto.RegisterRequest;
 import com.example.mindbuilderbackend.dto.StudentDTO;
+import com.example.mindbuilderbackend.model.Parent;
 import com.example.mindbuilderbackend.model.Student;
+import com.example.mindbuilderbackend.service.ParentService;
 import com.example.mindbuilderbackend.service.StudentService;
 import com.example.mindbuilderbackend.util.StudentMapper;
 import org.springframework.http.HttpStatus;
@@ -14,12 +16,15 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/students")
+@CrossOrigin("*")
 public class StudentController {
 
     private final StudentService studentService;
 
-    public StudentController(StudentService studentService) {
+    private final ParentService parentService;
+    public StudentController(StudentService studentService, ParentService parentService) {
         this.studentService = studentService;
+        this.parentService = parentService;
     }
 
     @PostMapping("/register")
@@ -28,6 +33,10 @@ public class StudentController {
         student.setName(request.getName());
         student.setEmail(request.getEmail());
         student.setPassword(request.getPassword());
+        if (request.getParentId() != null) {
+            Parent parent = parentService.getParentEntityById(request.getParentId());
+            student.setParent(parent);
+        }
 
         Student registeredStudent = studentService.registerStudent(student);
         return new ResponseEntity<>(StudentMapper.toDTO(registeredStudent), HttpStatus.CREATED);
@@ -47,6 +56,7 @@ public class StudentController {
                 .collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
+
 
     @GetMapping("/parent/{parentId}")
     public ResponseEntity<List<StudentDTO>> getStudentsByParent(@PathVariable Long parentId) {

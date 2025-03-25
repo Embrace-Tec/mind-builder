@@ -2,12 +2,13 @@ package com.example.mindbuilderbackend.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
-public class StudentDTO {
+public class ParentDTO {
     private Long id;
     private String name;
     private String email;
-    private ParentDTO parent;
-    private Integer rank;
-    private Integer totalMarks;
+    private String password;
+    private List<StudentDTO> children;
 }

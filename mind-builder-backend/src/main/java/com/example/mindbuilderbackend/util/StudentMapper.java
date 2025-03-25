@@ -1,30 +1,45 @@
 package com.example.mindbuilderbackend.util;
 
+import com.example.mindbuilderbackend.dto.ParentDTO;
 import com.example.mindbuilderbackend.dto.StudentDTO;
 import com.example.mindbuilderbackend.model.Student;
 
 public class StudentMapper {
     public static StudentDTO toDTO(Student student) {
+        if (student == null) {
+            return null;
+        }
+
         StudentDTO dto = new StudentDTO();
         dto.setId(student.getId());
         dto.setName(student.getName());
         dto.setEmail(student.getEmail());
-        if (student.getParent() != null) {
-            dto.setParentId(student.getParent().getId());
-        }
         dto.setRank(student.getStudentRank());
         dto.setTotalMarks(student.getTotalMarks());
+
+        // Map parent to ParentDTO if exists
+        if (student.getParent() != null) {
+            dto.setParent(ParentMapper.toBasicDTO(student.getParent()));
+        }
+
         return dto;
     }
 
     public static Student toEntity(StudentDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
         Student student = new Student();
         student.setId(dto.getId());
         student.setName(dto.getName());
         student.setEmail(dto.getEmail());
-        // Note: Parent and password need to be handled separately
         student.setStudentRank(dto.getRank());
         student.setTotalMarks(dto.getTotalMarks());
+
+        // Note: Parent relationship should be handled separately in service layer
+        // Note: Password should be handled separately in service layer
+
         return student;
     }
 }
