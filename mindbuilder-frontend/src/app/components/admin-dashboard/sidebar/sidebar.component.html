@@ -1,0 +1,36 @@
+<aside class="sidebar bg-dark text-white" [class.collapsed]="collapsed">
+  <div class="sidebar-sticky pt-3">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <i class="bi bi-speedometer2 me-3"></i>
+          <span class="d-none d-lg-inline">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/admin/students" routerLinkActive="active">
+          <i class="bi bi-people me-3"></i>
+          <span class="d-none d-lg-inline">Students</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-collection me-3"></i>
+          <span class="d-none d-lg-inline">Content</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-graph-up me-3"></i>
+          <span class="d-none d-lg-inline">Analytics</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="bi bi-gear me-3"></i>
+          <span class="d-none d-lg-inline">Settings</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
