@@ -1,3 +1,5 @@
+import {StudentDTO} from '../dto/student-dto';
+
 export interface Student {
   id: number;
   name: string;
@@ -11,8 +13,6 @@ export interface Parent {
   id: number;
   name: string;
   email: string;
-  // Add any additional fields that might come from the backend
-  // For example:
   phone?: string;
   address?: string;
 }
@@ -28,6 +28,6 @@ export interface ParentDTO {
   id: number;
   name: string;
   email: string;
-  phone_number?: string;  // Example if backend uses snake_case
-  home_address?: string;  // Example if backend uses different field names
+  phone_number?: string;
+  home_address?: string;
 }

@@ -1,34 +1,56 @@
-<aside class="sidebar bg-dark text-white" [class.collapsed]="collapsed">
+<aside class="sidebar bg-dark text-white vh-100 position-sticky top-0 overflow-auto"
+       [class.collapsed]="collapsed">
   <div class="sidebar-sticky pt-3">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <i class="bi bi-speedometer2 me-3"></i>
-          <span class="d-none d-lg-inline">Dashboard</span>
+        <a class="nav-link d-flex align-items-center py-3 py-lg-2 px-3"
+           routerLink="/admin"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">
+          <i class="bi bi-speedometer2 fs-5"></i>
+          <span class="ms-3 d-none d-lg-inline">Dashboard</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/admin/students" routerLinkActive="active">
-          <i class="bi bi-people me-3"></i>
-          <span class="d-none d-lg-inline">Students</span>
+        <a class="nav-link d-flex align-items-center py-3 py-lg-2 px-3"
+           routerLink="/admin/students"
+           routerLinkActive="active">
+          <i class="bi bi-people fs-5"></i>
+          <span class="ms-3 d-none d-lg-inline">Students</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="bi bi-collection me-3"></i>
-          <span class="d-none d-lg-inline">Content</span>
+        <a class="nav-link d-flex align-items-center py-3 py-lg-2 px-3"
+           routerLink="/admin/parents"
+           routerLinkActive="active">
+          <i class="bi bi-people fs-5"></i>
+          <span class="ms-3 d-none d-lg-inline">Parents</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="bi bi-graph-up me-3"></i>
-          <span class="d-none d-lg-inline">Analytics</span>
+        <a class="nav-link d-flex align-items-center py-3 py-lg-2 px-3"
+           routerLink="/admin/teachers"
+           routerLinkActive="active">
+          <i class="bi bi-people fs-5"></i>
+          <span class="ms-3 d-none d-lg-inline">Teachers</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="bi bi-gear me-3"></i>
-          <span class="d-none d-lg-inline">Settings</span>
+        <a class="nav-link d-flex align-items-center py-3 py-lg-2 px-3" href="#">
+          <i class="bi bi-collection fs-5"></i>
+          <span class="ms-3 d-none d-lg-inline">Content</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center py-3 py-lg-2 px-3" href="#">
+          <i class="bi bi-graph-up fs-5"></i>
+          <span class="ms-3 d-none d-lg-inline">Analytics</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link d-flex align-items-center py-3 py-lg-2 px-3" href="#">
+          <i class="bi bi-gear fs-5"></i>
+          <span class="ms-3 d-none d-lg-inline">Settings</span>
         </a>
       </li>
     </ul>
