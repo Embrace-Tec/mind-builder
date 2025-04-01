@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -18,4 +19,5 @@ public class Teacher extends User {
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IQGame> iqGames = new ArrayList<>();
+
 }

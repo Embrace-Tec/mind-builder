@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface IQGameRepository extends JpaRepository<IQGame, Long> {
     List<IQGame> findByTeacherId(Long teacherId);
-    List<IQGame> findByLesson_LessonId(Long lessonId); // Corrected query method
+    List<IQGame> findByDifficultyLevel(String difficultyLevel);
+    List<IQGame> findByTitleContainingIgnoreCase(String title);
 }

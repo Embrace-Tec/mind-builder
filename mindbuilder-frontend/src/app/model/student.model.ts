@@ -1,4 +1,3 @@
-import {StudentDTO} from '../dto/student-dto';
 
 export interface Student {
   id: number;

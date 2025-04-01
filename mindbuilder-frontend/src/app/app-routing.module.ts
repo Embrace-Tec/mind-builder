@@ -5,6 +5,9 @@ import { StudentListComponent } from './components/student-list/student-list.com
 import {MainContentComponent} from './components/admin-dashboard/main-content/main-content.component';
 import {ParentManagementComponent} from './components/parent-management/parent-management.component';
 import {TeacherListComponent} from './components/teacher-list/teacher-list.component';
+import {IQGameListComponent} from './components/iq-game-list/iq-game-list.component';
+import {LessonListComponent} from './components/lesson-list/lesson-list.component';
+import {AdminLessonListComponent} from './components/admin-lesson-list/admin-lesson-list.component';
 
 const routes: Routes = [
   {
@@ -27,6 +30,18 @@ const routes: Routes = [
       {
         path: 'teachers',
         component: TeacherListComponent
+      },
+      {
+        path: 'games',
+        component: IQGameListComponent
+      },
+      {
+        path: 'lessons',
+        component: LessonListComponent
+      },
+      {
+        path: 'admin-lessons',
+        component: AdminLessonListComponent
       },
       {
         path: '',

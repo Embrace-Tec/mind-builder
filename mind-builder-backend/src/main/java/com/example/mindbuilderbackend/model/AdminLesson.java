@@ -5,20 +5,15 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Data
 @Entity
-@Table(name = "lessons")
-public class Lesson {
+@Table(name = "admin_lessons")
+public class AdminLesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long lessonId;
-
-    @ManyToOne
-    @JoinColumn(name = "teacher_id", nullable = false)
-    private Teacher teacher;
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)

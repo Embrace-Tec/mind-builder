@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalModule } from 'ngx-bootstrap/modal'; // Add this import
-
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { SidebarComponent } from './components/admin-dashboard/sidebar/sidebar.component';
@@ -15,6 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ParentManagementComponent } from './components/parent-management/parent-management.component';
 import { TeacherListComponent } from './components/teacher-list/teacher-list.component';
+import {IQGameListComponent} from './components/iq-game-list/iq-game-list.component';
+import { LessonListComponent } from './components/lesson-list/lesson-list.component';
+import { QuillModule } from 'ngx-quill';
+import { AdminLessonListComponent } from './components/admin-lesson-list/admin-lesson-list.component';
 
 @NgModule({
   declarations: [
@@ -25,19 +28,22 @@ import { TeacherListComponent } from './components/teacher-list/teacher-list.com
     MainContentComponent,
     StudentListComponent,
     ParentManagementComponent,
-    TeacherListComponent
+    TeacherListComponent,
+    IQGameListComponent,
+    LessonListComponent,
+    AdminLessonListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ModalModule.forRoot(), // Add this to imports instead of BsModalService
+    ModalModule.forRoot(),
+    QuillModule.forRoot(),
     AppRoutingModule,
     NgbModule
   ],
   providers: [
-    // BsModalService is already provided by ModalModule, so no need to add it here
   ],
   bootstrap: [AppComponent]
 })
