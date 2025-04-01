@@ -12,186 +12,349 @@
     </div>
   </div>
 
-  <!-- Stats Cards -->
-  <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
-    <!-- Total Users -->
-    <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
-      <div class="p-3 sm:p-4 md:p-6 text-white">
-        <div class="flex justify-between items-start">
-          <div>
-            <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Total Users</p>
-            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">1,258</h3>
-            <p class="text-blue-100 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">
-              <i class="bi bi-arrow-up-short text-base sm:text-lg mr-1"></i>
-              <span>12% from last month</span>
-            </p>
-          </div>
-          <div class="bg-blue-400 bg-opacity-20 p-2 sm:p-3 rounded-full">
-            <i class="bi bi-people text-xl sm:text-2xl"></i>
+<!--  &lt;!&ndash; Stats Cards &ndash;&gt;-->
+<!--  <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">-->
+<!--    &lt;!&ndash; Total Users &ndash;&gt;-->
+<!--    <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">-->
+<!--      <div class="p-3 sm:p-4 md:p-6 text-white">-->
+<!--        <div class="flex justify-between items-start">-->
+<!--          <div>-->
+<!--            <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Total Users</p>-->
+<!--            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">1,258</h3>-->
+<!--            <p class="text-blue-100 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">-->
+<!--              <i class="bi bi-arrow-up-short text-base sm:text-lg mr-1"></i>-->
+<!--              <span>12% from last month</span>-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          <div class="bg-blue-400 bg-opacity-20 p-2 sm:p-3 rounded-full">-->
+<!--            <i class="bi bi-people text-xl sm:text-2xl"></i>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Active Content &ndash;&gt;-->
+<!--    <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">-->
+<!--      <div class="p-3 sm:p-4 md:p-6 text-white">-->
+<!--        <div class="flex justify-between items-start">-->
+<!--          <div>-->
+<!--            <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Active Content</p>-->
+<!--            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">542</h3>-->
+<!--            <p class="text-green-100 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">-->
+<!--              <i class="bi bi-arrow-up-short text-base sm:text-lg mr-1"></i>-->
+<!--              <span>8% from last week</span>-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          <div class="bg-green-400 bg-opacity-20 p-2 sm:p-3 rounded-full">-->
+<!--            <i class="bi bi-collection text-xl sm:text-2xl"></i>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Pending Tasks &ndash;&gt;-->
+<!--    <div class="bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">-->
+<!--      <div class="p-3 sm:p-4 md:p-6 text-gray-800">-->
+<!--        <div class="flex justify-between items-start">-->
+<!--          <div>-->
+<!--            <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Pending Tasks</p>-->
+<!--            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">23</h3>-->
+<!--            <p class="text-amber-700 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">-->
+<!--              <i class="bi bi-exclamation-triangle text-base sm:text-lg mr-1"></i>-->
+<!--              <span>3 urgent tasks</span>-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          <div class="bg-amber-300 bg-opacity-20 p-2 sm:p-3 rounded-full">-->
+<!--            <i class="bi bi-exclamation-triangle text-xl sm:text-2xl"></i>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Daily Visits &ndash;&gt;-->
+<!--    <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">-->
+<!--      <div class="p-3 sm:p-4 md:p-6 text-white">-->
+<!--        <div class="flex justify-between items-start">-->
+<!--          <div>-->
+<!--            <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Daily Visits</p>-->
+<!--            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">3,487</h3>-->
+<!--            <p class="text-cyan-100 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">-->
+<!--              <i class="bi bi-arrow-down-short text-base sm:text-lg mr-1"></i>-->
+<!--              <span>2% from yesterday</span>-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          <div class="bg-cyan-400 bg-opacity-20 p-2 sm:p-3 rounded-full">-->
+<!--            <i class="bi bi-graph-up text-xl sm:text-2xl"></i>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Main Content Area &ndash;&gt;-->
+<!--  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">-->
+<!--    &lt;!&ndash; Activity Chart &ndash;&gt;-->
+<!--    <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">-->
+<!--      <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">-->
+<!--        <div class="flex flex-col xs:flex-row justify-between items-start xs:items-center gap-2">-->
+<!--          <h5 class="text-base sm:text-lg font-semibold text-gray-800 dark:text-white">Activity Overview</h5>-->
+<!--          <select class="text-xs sm:text-sm bg-gray-100 dark:bg-gray-700 border-0 rounded-md sm:rounded-lg px-2 sm:px-3 py-1 focus:ring-2 focus:ring-blue-500">-->
+<!--            <option>Last 7 days</option>-->
+<!--            <option>Last 30 days</option>-->
+<!--            <option>Last 90 days</option>-->
+<!--          </select>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="p-4 sm:p-6">-->
+<!--        <div class="h-60 sm:h-80 flex flex-col items-center justify-center text-gray-400 dark:text-gray-500">-->
+<!--          <i class="bi bi-bar-chart text-4xl sm:text-5xl mb-3 sm:mb-4"></i>-->
+<!--          <p class="text-sm sm:text-lg">Activity data visualization</p>-->
+<!--          <p class="text-2xs xs:text-xs sm:text-sm mt-1">Select a time range to display data</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Recent Activity &ndash;&gt;-->
+<!--    <div class="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">-->
+<!--      <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">-->
+<!--        <h5 class="text-base sm:text-lg font-semibold text-gray-800 dark:text-white">Recent Activity</h5>-->
+<!--      </div>-->
+<!--      <div class="divide-y divide-gray-200 dark:divide-gray-700">-->
+<!--        &lt;!&ndash; Activity Item 1 &ndash;&gt;-->
+<!--        <div class="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">-->
+<!--          <div class="flex items-start">-->
+<!--            <div class="flex-shrink-0 mt-0.5 sm:mt-1">-->
+<!--              <div class="bg-green-100 dark:bg-green-900 p-1.5 sm:p-2 rounded-full">-->
+<!--                <i class="bi bi-check-circle-fill text-green-500 dark:text-green-400 text-sm sm:text-lg"></i>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="ml-2 sm:ml-3 flex-1 min-w-0">-->
+<!--              <div class="flex justify-between items-start">-->
+<!--                <p class="text-xs sm:text-sm font-medium text-gray-800 dark:text-white truncate">New user registered</p>-->
+<!--                <span class="text-2xs xs:text-xs text-gray-500 whitespace-nowrap ml-2">5 min ago</span>-->
+<!--              </div>-->
+<!--              <p class="text-2xs xs:text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">John Doe joined the platform</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Activity Item 2 &ndash;&gt;-->
+<!--        <div class="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">-->
+<!--          <div class="flex items-start">-->
+<!--            <div class="flex-shrink-0 mt-0.5 sm:mt-1">-->
+<!--              <div class="bg-red-100 dark:bg-red-900 p-1.5 sm:p-2 rounded-full">-->
+<!--                <i class="bi bi-x-circle-fill text-red-500 dark:text-red-400 text-sm sm:text-lg"></i>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="ml-2 sm:ml-3 flex-1 min-w-0">-->
+<!--              <div class="flex justify-between items-start">-->
+<!--                <p class="text-xs sm:text-sm font-medium text-gray-800 dark:text-white truncate">Content item rejected</p>-->
+<!--                <span class="text-2xs xs:text-xs text-gray-500 whitespace-nowrap ml-2">1 hour ago</span>-->
+<!--              </div>-->
+<!--              <p class="text-2xs xs:text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">"Advanced Tutorial" by Sarah</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Activity Item 3 &ndash;&gt;-->
+<!--        <div class="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">-->
+<!--          <div class="flex items-start">-->
+<!--            <div class="flex-shrink-0 mt-0.5 sm:mt-1">-->
+<!--              <div class="bg-blue-100 dark:bg-blue-900 p-1.5 sm:p-2 rounded-full">-->
+<!--                <i class="bi bi-info-circle-fill text-blue-500 dark:text-blue-400 text-sm sm:text-lg"></i>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="ml-2 sm:ml-3 flex-1 min-w-0">-->
+<!--              <div class="flex justify-between items-start">-->
+<!--                <p class="text-xs sm:text-sm font-medium text-gray-800 dark:text-white truncate">System update completed</p>-->
+<!--                <span class="text-2xs xs:text-xs text-gray-500 whitespace-nowrap ml-2">3 hours ago</span>-->
+<!--              </div>-->
+<!--              <p class="text-2xs xs:text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">Version 2.3.1 deployed</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Activity Item 4 &ndash;&gt;-->
+<!--        <div class="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">-->
+<!--          <div class="flex items-start">-->
+<!--            <div class="flex-shrink-0 mt-0.5 sm:mt-1">-->
+<!--              <div class="bg-purple-100 dark:bg-purple-900 p-1.5 sm:p-2 rounded-full">-->
+<!--                <i class="bi bi-lightning-fill text-purple-500 dark:text-purple-400 text-sm sm:text-lg"></i>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="ml-2 sm:ml-3 flex-1 min-w-0">-->
+<!--              <div class="flex justify-between items-start">-->
+<!--                <p class="text-xs sm:text-sm font-medium text-gray-800 dark:text-white truncate">Performance improved</p>-->
+<!--                <span class="text-2xs xs:text-xs text-gray-500 whitespace-nowrap ml-2">5 hours ago</span>-->
+<!--              </div>-->
+<!--              <p class="text-2xs xs:text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">API response time reduced by 40%</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <!-- src/app/pages/lessons-dashboard/lessons-dashboard.component.html -->
+  <div class="container mx-auto px-3 sm:px-4 py-4 sm:py-6">
+    <!-- Header -->
+<!--    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">-->
+<!--      <div>-->
+<!--        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-white">Lessons Dashboard</h2>-->
+<!--        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Manage and view all your lessons</p>-->
+<!--      </div>-->
+<!--      <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center">-->
+<!--        <i class="bi bi-plus-lg mr-2"></i> Create New Lesson-->
+<!--      </button>-->
+<!--    </div>-->
+
+    <!-- Filters -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 mb-6 sm:mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <!-- Search -->
+        <div class="md:col-span-2">
+          <label for="search" class="sr-only">Search</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="bi bi-search text-gray-400"></i>
+            </div>
+            <input id="search" name="search" type="text" [(ngModel)]="searchQuery"
+                   (ngModelChange)="onSearchChange()"
+                   class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                   placeholder="Search lessons...">
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Active Content -->
-    <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
-      <div class="p-3 sm:p-4 md:p-6 text-white">
-        <div class="flex justify-between items-start">
-          <div>
-            <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Active Content</p>
-            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">542</h3>
-            <p class="text-green-100 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">
-              <i class="bi bi-arrow-up-short text-base sm:text-lg mr-1"></i>
-              <span>8% from last week</span>
-            </p>
-          </div>
-          <div class="bg-green-400 bg-opacity-20 p-2 sm:p-3 rounded-full">
-            <i class="bi bi-collection text-xl sm:text-2xl"></i>
-          </div>
+        <!-- Status Filter -->
+        <div>
+          <label for="status" class="sr-only">Status</label>
+          <select id="status" name="status" [(ngModel)]="selectedStatus"
+                  (ngModelChange)="onStatusChange()"
+                  class="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+            <option *ngFor="let option of statusOptions" [value]="option.value">{{option.label}}</option>
+          </select>
         </div>
-      </div>
-    </div>
 
-    <!-- Pending Tasks -->
-    <div class="bg-gradient-to-r from-amber-400 to-amber-500 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
-      <div class="p-3 sm:p-4 md:p-6 text-gray-800">
-        <div class="flex justify-between items-start">
-          <div>
-            <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Pending Tasks</p>
-            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">23</h3>
-            <p class="text-amber-700 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">
-              <i class="bi bi-exclamation-triangle text-base sm:text-lg mr-1"></i>
-              <span>3 urgent tasks</span>
-            </p>
-          </div>
-          <div class="bg-amber-300 bg-opacity-20 p-2 sm:p-3 rounded-full">
-            <i class="bi bi-exclamation-triangle text-xl sm:text-2xl"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Daily Visits -->
-    <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
-      <div class="p-3 sm:p-4 md:p-6 text-white">
-        <div class="flex justify-between items-start">
-          <div>
-            <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Daily Visits</p>
-            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">3,487</h3>
-            <p class="text-cyan-100 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">
-              <i class="bi bi-arrow-down-short text-base sm:text-lg mr-1"></i>
-              <span>2% from yesterday</span>
-            </p>
-          </div>
-          <div class="bg-cyan-400 bg-opacity-20 p-2 sm:p-3 rounded-full">
-            <i class="bi bi-graph-up text-xl sm:text-2xl"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Content Area -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-    <!-- Activity Chart -->
-    <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
-      <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
-        <div class="flex flex-col xs:flex-row justify-between items-start xs:items-center gap-2">
-          <h5 class="text-base sm:text-lg font-semibold text-gray-800 dark:text-white">Activity Overview</h5>
-          <select class="text-xs sm:text-sm bg-gray-100 dark:bg-gray-700 border-0 rounded-md sm:rounded-lg px-2 sm:px-3 py-1 focus:ring-2 focus:ring-blue-500">
-            <option>Last 7 days</option>
-            <option>Last 30 days</option>
-            <option>Last 90 days</option>
+        <!-- Difficulty Filter -->
+        <div>
+          <label for="difficulty" class="sr-only">Difficulty</label>
+          <select id="difficulty" name="difficulty" [(ngModel)]="selectedDifficulty"
+                  (ngModelChange)="onDifficultyChange()"
+                  class="block w-full pl-3 pr-10 py-2 text-base border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+            <option *ngFor="let option of difficultyOptions" [value]="option.value">{{option.label}}</option>
           </select>
         </div>
       </div>
-      <div class="p-4 sm:p-6">
-        <div class="h-60 sm:h-80 flex flex-col items-center justify-center text-gray-400 dark:text-gray-500">
-          <i class="bi bi-bar-chart text-4xl sm:text-5xl mb-3 sm:mb-4"></i>
-          <p class="text-sm sm:text-lg">Activity data visualization</p>
-          <p class="text-2xs xs:text-xs sm:text-sm mt-1">Select a time range to display data</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8">
+      <!-- Total Lessons -->
+      <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
+        <div class="p-3 sm:p-4 md:p-6 text-white">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Total Lessons</p>
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">{{lessons.length}}</h3>
+              <p class="text-blue-100 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">
+                <i class="bi bi-collection text-base sm:text-lg mr-1"></i>
+                <span>All lesson types</span>
+              </p>
+            </div>
+            <div class="bg-blue-400 bg-opacity-20 p-2 sm:p-3 rounded-full">
+              <i class="bi bi-journal-bookmark text-xl sm:text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Lessons -->
+      <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
+        <div class="p-3 sm:p-4 md:p-6 text-white">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Active Lessons</p>
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">
+                {{activeLessonsCount}}
+              </h3>
+              <p class="text-green-100 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">
+                <i class="bi bi-check-circle text-base sm:text-lg mr-1"></i>
+                <span>Available to users</span>
+              </p>
+            </div>
+            <div class="bg-green-400 bg-opacity-20 p-2 sm:p-3 rounded-full">
+              <i class="bi bi-eye text-xl sm:text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Lessons -->
+      <div class="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
+        <div class="p-3 sm:p-4 md:p-6 text-white">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Free Lessons</p>
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">
+                {{freeLessonsCount}}
+              </h3>
+              <p class="text-purple-100 text-2xs xs:text-xs mt-1 sm:mt-2 flex items-center">
+                <i class="bi bi-gift text-base sm:text-lg mr-1"></i>
+                <span>No cost to users</span>
+              </p>
+            </div>
+            <div class="bg-purple-400 bg-opacity-20 p-2 sm:p-3 rounded-full">
+              <i class="bi bi-currency-dollar text-xl sm:text-2xl"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popular Lessons -->
+      <div class="bg-gradient-to-r from-amber-500 to-amber-600 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
+        <div class="p-3 sm:p-4 md:p-6 text-white">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-xs sm:text-sm font-medium uppercase tracking-wider">Popular</p>
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-bold mt-1">
+                {{getMostPopularLesson()?.viewCount || 0}}
+              </h3>
+              <p class="text-amber-100 text-2xs xs:text-xs mt-1 sm:mt-2 truncate">
+                <i class="bi bi-star text-base sm:text-lg mr-1"></i>
+                <span>{{getMostPopularLesson()?.title || 'No views yet'}}</span>
+              </p>
+            </div>
+            <div class="bg-amber-400 bg-opacity-20 p-2 sm:p-3 rounded-full">
+              <i class="bi bi-fire text-xl sm:text-2xl"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Recent Activity -->
-    <div class="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-sm sm:shadow-md overflow-hidden">
-      <div class="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
-        <h5 class="text-base sm:text-lg font-semibold text-gray-800 dark:text-white">Recent Activity</h5>
+    <!-- Lessons Grid -->
+    <div *ngIf="isLoading" class="flex justify-center items-center h-64">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+
+    <div *ngIf="!isLoading">
+      <div *ngIf="filteredLessons.length === 0" class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-8 text-center">
+        <i class="bi bi-journal-x text-4xl text-gray-400 mb-4"></i>
+        <h3 class="text-lg font-medium text-gray-900 dark:text-white">No lessons found</h3>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+          Try adjusting your search or filter to find what you're looking for.
+        </p>
+        <button class="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+          Create New Lesson
+        </button>
       </div>
-      <div class="divide-y divide-gray-200 dark:divide-gray-700">
-        <!-- Activity Item 1 -->
-        <div class="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-          <div class="flex items-start">
-            <div class="flex-shrink-0 mt-0.5 sm:mt-1">
-              <div class="bg-green-100 dark:bg-green-900 p-1.5 sm:p-2 rounded-full">
-                <i class="bi bi-check-circle-fill text-green-500 dark:text-green-400 text-sm sm:text-lg"></i>
-              </div>
-            </div>
-            <div class="ml-2 sm:ml-3 flex-1 min-w-0">
-              <div class="flex justify-between items-start">
-                <p class="text-xs sm:text-sm font-medium text-gray-800 dark:text-white truncate">New user registered</p>
-                <span class="text-2xs xs:text-xs text-gray-500 whitespace-nowrap ml-2">5 min ago</span>
-              </div>
-              <p class="text-2xs xs:text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">John Doe joined the platform</p>
-            </div>
-          </div>
-        </div>
 
-        <!-- Activity Item 2 -->
-        <div class="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-          <div class="flex items-start">
-            <div class="flex-shrink-0 mt-0.5 sm:mt-1">
-              <div class="bg-red-100 dark:bg-red-900 p-1.5 sm:p-2 rounded-full">
-                <i class="bi bi-x-circle-fill text-red-500 dark:text-red-400 text-sm sm:text-lg"></i>
-              </div>
-            </div>
-            <div class="ml-2 sm:ml-3 flex-1 min-w-0">
-              <div class="flex justify-between items-start">
-                <p class="text-xs sm:text-sm font-medium text-gray-800 dark:text-white truncate">Content item rejected</p>
-                <span class="text-2xs xs:text-xs text-gray-500 whitespace-nowrap ml-2">1 hour ago</span>
-              </div>
-              <p class="text-2xs xs:text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">"Advanced Tutorial" by Sarah</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Activity Item 3 -->
-        <div class="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-          <div class="flex items-start">
-            <div class="flex-shrink-0 mt-0.5 sm:mt-1">
-              <div class="bg-blue-100 dark:bg-blue-900 p-1.5 sm:p-2 rounded-full">
-                <i class="bi bi-info-circle-fill text-blue-500 dark:text-blue-400 text-sm sm:text-lg"></i>
-              </div>
-            </div>
-            <div class="ml-2 sm:ml-3 flex-1 min-w-0">
-              <div class="flex justify-between items-start">
-                <p class="text-xs sm:text-sm font-medium text-gray-800 dark:text-white truncate">System update completed</p>
-                <span class="text-2xs xs:text-xs text-gray-500 whitespace-nowrap ml-2">3 hours ago</span>
-              </div>
-              <p class="text-2xs xs:text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">Version 2.3.1 deployed</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Activity Item 4 -->
-        <div class="p-3 sm:p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-          <div class="flex items-start">
-            <div class="flex-shrink-0 mt-0.5 sm:mt-1">
-              <div class="bg-purple-100 dark:bg-purple-900 p-1.5 sm:p-2 rounded-full">
-                <i class="bi bi-lightning-fill text-purple-500 dark:text-purple-400 text-sm sm:text-lg"></i>
-              </div>
-            </div>
-            <div class="ml-2 sm:ml-3 flex-1 min-w-0">
-              <div class="flex justify-between items-start">
-                <p class="text-xs sm:text-sm font-medium text-gray-800 dark:text-white truncate">Performance improved</p>
-                <span class="text-2xs xs:text-xs text-gray-500 whitespace-nowrap ml-2">5 hours ago</span>
-              </div>
-              <p class="text-2xs xs:text-xs text-gray-500 dark:text-gray-400 mt-0.5 truncate">API response time reduced by 40%</p>
-            </div>
-          </div>
-        </div>
+      <div *ngIf="filteredLessons.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <app-lesson-card *ngFor="let lesson of filteredLessons" [lesson]="lesson"></app-lesson-card>
       </div>
     </div>
   </div>
+
 </div>
+
+

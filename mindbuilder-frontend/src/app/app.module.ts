@@ -18,6 +18,7 @@ import {IQGameListComponent} from './components/iq-game-list/iq-game-list.compon
 import { LessonListComponent } from './components/lesson-list/lesson-list.component';
 import { QuillModule } from 'ngx-quill';
 import { AdminLessonListComponent } from './components/admin-lesson-list/admin-lesson-list.component';
+import { LessonCardComponent } from './components/lesson-card/lesson-card.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AdminLessonListComponent } from './components/admin-lesson-list/admin-l
     TeacherListComponent,
     IQGameListComponent,
     LessonListComponent,
-    AdminLessonListComponent
+    AdminLessonListComponent,
+    LessonCardComponent
   ],
   imports: [
     BrowserModule,
