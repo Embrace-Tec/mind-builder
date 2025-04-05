@@ -34,6 +34,7 @@ public class TeacherService {
         Teacher teacher = new Teacher();
         teacher.setName(registrationDTO.getName());
         teacher.setEmail(registrationDTO.getEmail());
+        teacher.setImgUrl(registrationDTO.getImgUrl());
         teacher.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
         teacher.setRole(Role.TEACHER);
 
@@ -59,7 +60,7 @@ public class TeacherService {
 
         existingTeacher.setName(updateDTO.getName());
         existingTeacher.setEmail(updateDTO.getEmail());
-
+existingTeacher.setImgUrl(updateDTO.getImgUrl());
         Teacher updatedTeacher = teacherRepository.save(existingTeacher);
         return convertToDTO(updatedTeacher);
     }
@@ -80,6 +81,7 @@ public class TeacherService {
         TeacherDTO dto = new TeacherDTO();
         dto.setId(teacher.getId());
         dto.setName(teacher.getName());
+        dto.setImgUrl(teacher.getImgUrl());
         dto.setEmail(teacher.getEmail());
         dto.setRole(teacher.getRole());
         return dto;
@@ -89,6 +91,7 @@ public class TeacherService {
         Teacher teacher = new Teacher();
         teacher.setName(registrationDTO.getName());
         teacher.setEmail(registrationDTO.getEmail());
+        teacher.setImgUrl(registrationDTO.getImgUrl());
         teacher.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
         teacher.setRole(Role.TEACHER);
         return teacher;

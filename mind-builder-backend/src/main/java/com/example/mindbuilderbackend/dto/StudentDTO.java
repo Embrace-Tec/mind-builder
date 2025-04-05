@@ -7,6 +7,7 @@ public class StudentDTO {
     private Long id;
     private String name;
     private String email;
+    private String imgUrl;
     private ParentDTO parent;
     private Integer rank;
     private Integer totalMarks;

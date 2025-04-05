@@ -1,18 +1,25 @@
 package com.example.mindbuilderbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+import java.util.ArrayList;
+import java.util.List;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter@EqualsAndHashCode(callSuper = true)
 @Entity
 @DiscriminatorValue("STUDENT")
 public class Student extends User {
-    private int studentRank; // Renamed from 'rank'
+    private int studentRank;
     private int totalMarks;
 
     @ManyToOne
     @JoinColumn(name = "parent_id")
+    @JsonBackReference
     private Parent parent;
 }

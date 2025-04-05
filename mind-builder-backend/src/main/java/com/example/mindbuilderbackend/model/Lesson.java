@@ -1,11 +1,14 @@
 package com.example.mindbuilderbackend.model;
 
 import com.example.mindbuilderbackend.model.enums.LessonStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -73,4 +76,8 @@ public class Lesson {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private LessonStatus status = LessonStatus.PENDING;
+
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<ParentLessonPurchase> purchases = new ArrayList<>();
 }

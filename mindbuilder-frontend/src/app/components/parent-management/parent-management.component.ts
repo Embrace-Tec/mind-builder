@@ -34,6 +34,11 @@ export class ParentManagementComponent implements OnInit {
 
   modalRef?: BsModalRef;
 
+  selectedImage: File | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
+  isUploading = false;
+  uploadProgress = 0;
+
   constructor(
     private parentService: ParentService,
     private fb: FormBuilder,
@@ -44,6 +49,7 @@ export class ParentManagementComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.minLength(6)],
+      imgUrl: ['']
     });
   }
 
@@ -85,6 +91,70 @@ export class ParentManagementComponent implements OnInit {
     this.parentForm.get('password')?.setValidators([Validators.required, Validators.minLength(6)]);
     this.parentForm.get('password')?.updateValueAndValidity();
     this.modalRef = this.modalService.show(template);
+  }
+
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImage = file;
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  async uploadImage(): Promise<string> {
+    if (!this.selectedImage) return '';
+
+    this.isUploading = true;
+    this.uploadProgress = 0;
+    const CLOUD_NAME = 'dsxmufxmq';
+    const UPLOAD_PRESET = 'mern-app';
+    const url = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`;
+
+    const formData = new FormData();
+    formData.append('file', this.selectedImage);
+    formData.append('upload_preset', UPLOAD_PRESET);
+
+    return new Promise<string>((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+
+      xhr.upload.addEventListener('progress', (event) => {
+        if (event.lengthComputable) {
+          this.uploadProgress = Math.round((event.loaded * 100) / event.total);
+        }
+      });
+
+      xhr.addEventListener('load', () => {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          const response = JSON.parse(xhr.responseText);
+          resolve(response.secure_url);
+        } else {
+          reject(new Error('Image upload failed'));
+        }
+        this.isUploading = false;
+        this.uploadProgress = 0;
+      });
+
+      xhr.addEventListener('error', () => {
+        reject(new Error('Image upload failed'));
+        this.isUploading = false;
+        this.uploadProgress = 0;
+      });
+
+      xhr.addEventListener('abort', () => {
+        reject(new Error('Upload aborted'));
+        this.isUploading = false;
+        this.uploadProgress = 0;
+      });
+
+      xhr.open('POST', url, true);
+      xhr.send(formData);
+    });
   }
 
   openEditModal(template: TemplateRef<any>, parent: ParentDTOO): void {
@@ -135,46 +205,55 @@ export class ParentManagementComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.parentForm.invalid) return;
 
-    if (this.isEditMode) {
-      // For update, use ParentDTOO structure
-      const parentData: ParentDTOO = {
-        id: this.parentForm.value.id,
-        name: this.parentForm.value.name,
-        email: this.parentForm.value.email,
-        children: this.selectedParent?.children || [] // Preserve existing children
-      };
+    try {
+      let imgUrl = '';
+      if (this.selectedImage) {
+        imgUrl = await this.uploadImage();
+      }
 
-      const parentId = this.parentForm.value.id;
-      this.parentService.updateParent(parentId, parentData).subscribe({
-        next: (updatedParent) => {
-          const index = this.parents.findIndex(p => p.id === updatedParent.id);
-          if (index !== -1) {
-            this.parents[index] = updatedParent;
-          }
-          this.applyFilter();
-          this.closeModal()
-        },
-        error: (err) => console.error('Error updating parent:', err)
-      });
-    } else {
-      // For registration, use RegisterParentRequest
-      const parentData: RegisterParentRequest = {
-        name: this.parentForm.value.name,
-        email: this.parentForm.value.email,
-        password: this.parentForm.value.password
-      };
+      if (this.isEditMode) {
+        const parentData: ParentDTOO = {
+          id: this.parentForm.value.id,
+          name: this.parentForm.value.name,
+          email: this.parentForm.value.email,
+          imgUrl: imgUrl || this.parentForm.value.imgUrl,
+          children: this.selectedParent?.children || []
+        };
 
-      this.parentService.registerParent(parentData).subscribe({
-        next: (newParent) => {
-          this.parents.push(newParent);
-          this.applyFilter();
-          this.closeModal();
-        },
-        error: (err) => console.error('Error registering parent:', err)
-      });
+        const parentId = this.parentForm.value.id;
+        this.parentService.updateParent(parentId, parentData).subscribe({
+          next: (updatedParent) => {
+            const index = this.parents.findIndex(p => p.id === updatedParent.id);
+            if (index !== -1) {
+              this.parents[index] = updatedParent;
+            }
+            this.applyFilter();
+            this.closeModal();
+          },
+          error: (err) => console.error('Error updating parent:', err)
+        });
+      } else {
+        const parentData: RegisterParentRequest = {
+          name: this.parentForm.value.name,
+          email: this.parentForm.value.email,
+          password: this.parentForm.value.password,
+          imgUrl: imgUrl
+        };
+
+        this.parentService.registerParent(parentData).subscribe({
+          next: (newParent) => {
+            this.parents.push(newParent);
+            this.applyFilter();
+            this.closeModal();
+          },
+          error: (err) => console.error('Error registering parent:', err)
+        });
+      }
+    } catch (error) {
+      console.error('Error saving parent:', error);
     }
   }
 

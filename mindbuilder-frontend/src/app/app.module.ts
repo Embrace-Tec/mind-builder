@@ -19,6 +19,25 @@ import { LessonListComponent } from './components/lesson-list/lesson-list.compon
 import { QuillModule } from 'ngx-quill';
 import { AdminLessonListComponent } from './components/admin-lesson-list/admin-lesson-list.component';
 import { LessonCardComponent } from './components/lesson-card/lesson-card.component';
+import { LessonPreviewComponent } from './components/lesson-preview/lesson-preview.component';
+import { AlphabetGameComponent } from './components/alphabet-game/alphabet-game.component';
+import { NumberGameComponent } from './components/number-game/number-game.component';
+import { ColorGameComponent } from './components/color-game/color-game.component';
+import { AnimalGameComponent } from './components/animal-game/animal-game.component';
+import { ShapeGameComponent } from './components/shape-game/shape-game.component';
+import { MemoryGameComponent } from './components/memory-game/memory-game.component';
+import { GameContainerComponent } from './components/game-container/game-container.component';
+import { LoginComponent } from './components/login/login.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastrModule} from 'ngx-toastr';
+import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
+import { MainStudentComponent } from './components/main-student/main-student.component';
+import { ParentDashboardComponent } from './components/parent-dashboard/parent-dashboard.component';
+import { MainParentComponent } from './components/main-parent/main-parent.component';
+import { MainTeacherComponent } from './components/main-teacher/main-teacher.component';
+import { TeacherDashboardComponent } from './components/teacher-dashboard/teacher-dashboard.component';
+import { ParentLessonCardComponent } from './components/parent-lesson-card/parent-lesson-card.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -33,7 +52,23 @@ import { LessonCardComponent } from './components/lesson-card/lesson-card.compon
     IQGameListComponent,
     LessonListComponent,
     AdminLessonListComponent,
-    LessonCardComponent
+    LessonCardComponent,
+    LessonPreviewComponent,
+    AlphabetGameComponent,
+    NumberGameComponent,
+    ColorGameComponent,
+    AnimalGameComponent,
+    ShapeGameComponent,
+    MemoryGameComponent,
+    GameContainerComponent,
+    LoginComponent,
+    StudentDashboardComponent,
+    MainStudentComponent,
+    ParentDashboardComponent,
+    MainParentComponent,
+    MainTeacherComponent,
+    TeacherDashboardComponent,
+    ParentLessonCardComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +78,15 @@ import { LessonCardComponent } from './components/lesson-card/lesson-card.compon
     ModalModule.forRoot(),
     QuillModule.forRoot(),
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+
+    }),
+    MatSnackBarModule,
   ],
   providers: [
   ],

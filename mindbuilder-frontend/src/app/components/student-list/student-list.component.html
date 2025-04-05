@@ -71,44 +71,108 @@
 
 <!-- Add/Edit Modal Template -->
 <ng-template #studentModal let-modal>
-  <div class="modal-container" style="background-color: white; border-radius: 10px; max-width: 600px; width: 100%;">
-    <div class="modal-header" style="padding: 16px; border-bottom: 1px solid #e9ecef; display: flex; justify-content: space-between; align-items: center;">
-      <h5 class="modal-title" style="margin: 0; color: #343a40; font-weight: 600;">{{ isEditMode ? 'Edit' : 'Add' }} Student</h5>
-      <button type="button" class="close-btn" (click)="modal.dismiss()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6c757d;">&times;</button>
+  <div class="modal-container">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ isEditMode ? 'Edit' : 'Add' }} Student</h5>
+      <button type="button" class="close-btn" (click)="modal.dismiss()" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
-    <div class="modal-body" style="padding: 16px;">
+
+    <div class="modal-body">
       <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-        <div class="form-group" style="margin-bottom: 16px;">
-          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Name</label>
-          <input type="text" class="form-control" formControlName="name" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
+        <!-- Name Field -->
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Enter student name">
         </div>
-        <div class="form-group" style="margin-bottom: 16px;">
-          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Email</label>
-          <input type="email" class="form-control" formControlName="email" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="student@example.com">
         </div>
-        <div class="form-group" style="margin-bottom: 16px;" *ngIf="!isEditMode">
-          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Password</label>
-          <input type="password" class="form-control" formControlName="password" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
+
+        <!-- Password Field (only for new students) -->
+        <div class="form-group" *ngIf="!isEditMode">
+          <label class="form-label">Password</label>
+          <div class="password-input-container">
+            <input type="password" class="form-control" formControlName="password" placeholder="Create a password">
+            <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="form-group" style="margin-bottom: 16px;">
-          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Parent</label>
-          <select class="form-select" formControlName="parentId" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none; cursor: pointer;">
+
+        <!-- Image Upload -->
+        <div class="form-group">
+          <label class="form-label">Student Image</label>
+          <div class="image-upload-container" (click)="fileInput.click()">
+            <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+            <div class="upload-area" [class.has-image]="imagePreview || (isEditMode && studentForm.value.imgUrl)">
+              <div *ngIf="!(imagePreview || (isEditMode && studentForm.value.imgUrl))" class="upload-instructions">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"></path>
+                  <line x1="16" y1="5" x2="22" y2="5"></line>
+                  <line x1="19" y1="2" x2="19" y2="8"></line>
+                  <circle cx="9" cy="9" r="2"></circle>
+                  <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                </svg>
+                <p>Click to upload image</p>
+                <small>JPG or PNG, max 2MB</small>
+              </div>
+
+              <div *ngIf="imagePreview" class="image-preview">
+                <img [src]="imagePreview" alt="Preview">
+                <button type="button" class="change-image-btn" (click)="$event.stopPropagation()">
+                  Change Image
+                </button>
+              </div>
+
+              <div *ngIf="isEditMode && studentForm.value.imgUrl && !imagePreview" class="current-image">
+                <img [src]="studentForm.value.imgUrl" alt="Current Image">
+                <button type="button" class="change-image-btn" (click)="$event.stopPropagation()">
+                  Change Image
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parent Select -->
+        <div class="form-group">
+          <label class="form-label">Parent</label>
+          <select class="form-select" formControlName="parentId">
             <option [value]="null">No Parent</option>
             <option *ngFor="let parent of parents" [value]="parent.id">{{ parent.name }}</option>
           </select>
         </div>
-        <div class="form-group" style="margin-bottom: 16px;">
-          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Rank</label>
-          <input type="number" class="form-control" formControlName="studentRank" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
+
+        <!-- Rank and Marks -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Rank</label>
+            <input type="number" class="form-control" formControlName="studentRank" min="0" placeholder="0">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Total Marks</label>
+            <input type="number" class="form-control" formControlName="totalMarks" min="0" placeholder="0">
+          </div>
         </div>
-        <div class="form-group" style="margin-bottom: 24px;">
-          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Total Marks</label>
-          <input type="number" class="form-control" formControlName="totalMarks" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
-        </div>
-        <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 12px;">
-          <button type="button" class="cancel-btn" (click)="modal.dismiss()" style="padding: 8px 16px; border: 1px solid #6c757d; background-color: white; color: #6c757d; border-radius: 6px; cursor: pointer; transition: all 0.2s;">Cancel</button>
-          <button type="submit" class="submit-btn" [disabled]="studentForm.invalid" style="padding: 8px 16px; border: none; background-color: #2596be; color: white; border-radius: 6px; cursor: pointer; transition: all 0.2s;">
+
+        <!-- Form Actions -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">
             {{ isEditMode ? 'Update' : 'Register' }}
+            <span *ngIf="isUploading" class="spinner"></span>
           </button>
         </div>
       </form>

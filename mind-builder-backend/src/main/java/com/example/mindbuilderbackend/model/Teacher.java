@@ -1,15 +1,16 @@
 package com.example.mindbuilderbackend.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter@EqualsAndHashCode(callSuper = true)
 @Entity
 @DiscriminatorValue("TEACHER")
 public class Teacher extends User {

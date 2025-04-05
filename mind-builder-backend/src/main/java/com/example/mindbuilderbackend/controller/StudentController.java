@@ -32,6 +32,7 @@ public class StudentController {
         Student student = new Student();
         student.setName(request.getName());
         student.setEmail(request.getEmail());
+        student.setImgUrl(request.getImgUrl());
         student.setPassword(request.getPassword());
         if (request.getParentId() != null) {
             Parent parent = parentService.getParentEntityById(request.getParentId());

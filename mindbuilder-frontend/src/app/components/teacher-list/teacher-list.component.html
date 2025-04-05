@@ -1,55 +1,73 @@
-<div class="teacher-management-container" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+<div class="teacher-management-container">
   <!-- Header Section -->
-  <div class="d-flex justify-content-between align-items-center mb-4 p-3" style="background-color: #f8f9fa; border-radius: 8px;">
-    <h2 style="color: #343a40; margin: 0; font-weight: 600;">Teacher Management</h2>
-    <button class="add-teacher-btn" (click)="openAddModal(teacherModal)" style="background-color: #2596be; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 500; display: flex; align-items: center; gap: 6px; cursor: pointer; transition: all 0.2s;">
+  <div class="header-section">
+    <h2>Teacher Management</h2>
+    <button class="add-teacher-btn" (click)="openAddModal(teacherModal)">
       <i class="bi bi-plus-circle"></i> Add Teacher
     </button>
   </div>
 
   <!-- Card Container -->
-  <div class="card-container" style="background-color: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); overflow: hidden;">
+  <div class="card-container">
     <!-- Card Header with Search -->
-    <div class="card-header" style="padding: 16px; border-bottom: 1px solid #e9ecef; background-color: white;">
-      <div class="row" style="display: flex; flex-wrap: wrap; margin: -8px;">
-        <div class="search-col" style="flex: 1; min-width: 200px; padding: 8px;">
-          <input type="text" class="search-input" placeholder="Search teachers..." [(ngModel)]="searchText" name="searchText" (input)="applyFilter()" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none; transition: border 0.2s;">
-        </div>
+    <div class="card-header">
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search teachers..."
+               [(ngModel)]="searchText" name="searchText" (input)="applyFilter()">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
       </div>
     </div>
 
     <!-- Table Section -->
-    <div class="card-body" style="padding: 0;">
-      <div class="table-responsive" style="overflow-x: auto;">
-        <table class="teacher-table" style="width: 100%; border-collapse: collapse;">
-          <thead style="background-color: #f8f9fa;">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="teacher-table">
+          <thead>
           <tr>
-            <th style="padding: 12px 16px; text-align: left; color: #343a40; font-weight: 600; border-bottom: 1px solid #e9ecef;">ID</th>
-            <th style="padding: 12px 16px; text-align: left; color: #343a40; font-weight: 600; border-bottom: 1px solid #e9ecef;">Name</th>
-            <th style="padding: 12px 16px; text-align: left; color: #343a40; font-weight: 600; border-bottom: 1px solid #e9ecef;">Email</th>
-            <th style="padding: 12px 16px; text-align: left; color: #343a40; font-weight: 600; border-bottom: 1px solid #e9ecef;">Role</th>
-            <th style="padding: 12px 16px; text-align: left; color: #343a40; font-weight: 600; border-bottom: 1px solid #e9ecef;">Actions</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Image</th>
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let teacher of filteredTeachers" style="border-bottom: 1px solid #e9ecef; transition: background-color 0.2s;" class="teacher-row">
-            <td style="padding: 12px 16px; color: #343a40;">{{ teacher.id }}</td>
-            <td style="padding: 12px 16px; color: #343a40;">{{ teacher.name }}</td>
-            <td style="padding: 12px 16px; color: #2596be; text-decoration: none;">{{ teacher.email }}</td>
-            <td style="padding: 12px 16px; color: #343a40;">{{ teacher.role }}</td>
-            <td style="padding: 12px 16px;">
-              <div class="action-buttons" style="display: flex; gap: 8px;">
-                <button class="edit-btn" (click)="openEditModal(teacherModal, teacher)" style="background-color: transparent; border: 1px solid #2596be; color: #2596be; padding: 4px 8px; border-radius: 4px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 4px;">
-                  <i class="bi bi-pencil"></i>
+          <tr *ngFor="let teacher of filteredTeachers" class="teacher-row">
+            <td>{{ teacher.id }}</td>
+            <td>{{ teacher.name }}</td>
+            <td class="email-cell">{{ teacher.email }}</td>
+            <td>
+                <span class="role-badge" [ngClass]="'role-' + teacher.role.toLowerCase()">
+                  {{ teacher.role }}
+                </span>
+            </td>
+            <td class="image-cell">
+              <div class="teacher-avatar" [ngStyle]="{'background-image': 'url(' + (teacher.imgUrl || './assets/default-avatar.png') + ')'}"></div>
+            </td>
+            <td>
+              <div class="action-buttons">
+                <button class="edit-btn" (click)="openEditModal(teacherModal, teacher)">
+                  <i class="bi bi-pencil"></i> Edit
                 </button>
-                <button class="delete-btn" (click)="confirmDelete(deleteModal, teacher.id)" style="background-color: transparent; border: 1px solid #dc3545; color: #dc3545; padding: 4px 8px; border-radius: 4px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 4px;">
+                <button class="delete-btn" (click)="confirmDelete(deleteModal, teacher.id)">
                   <i class="bi bi-trash"></i>
                 </button>
               </div>
             </td>
           </tr>
           <tr *ngIf="filteredTeachers.length === 0">
-            <td colspan="5" style="padding: 24px 16px; text-align: center; color: #6c757d;">No teachers found</td>
+            <td colspan="6" class="no-results">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+              <p>No teachers found</p>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -60,38 +78,116 @@
 
 <!-- Add/Edit Modal Template -->
 <ng-template #teacherModal let-modal>
-  <div class="modal-container" style="background-color: white; border-radius: 10px; max-width: 600px; width: 100%;">
-    <div class="modal-header" style="padding: 16px; border-bottom: 1px solid #e9ecef; display: flex; justify-content: space-between; align-items: center;">
-      <h5 class="modal-title" style="margin: 0; color: #343a40; font-weight: 600;">{{ isEditMode ? 'Edit' : 'Add' }} Teacher</h5>
-      <button type="button" class="close-btn" (click)="modal.dismiss()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6c757d;">&times;</button>
+  <div class="modal-container">
+    <div class="modal-header">
+      <h5 class="modal-title">{{ isEditMode ? 'Edit' : 'Add' }} Teacher</h5>
+      <button type="button" class="close-btn" (click)="modal.dismiss()" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
-    <div class="modal-body" style="padding: 16px;">
+
+    <div class="modal-body">
       <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
-        <div class="form-group" style="margin-bottom: 16px;">
-          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Name</label>
-          <input type="text" class="form-control" formControlName="name" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
-          <div *ngIf="teacherForm.get('name')?.invalid && teacherForm.get('name')?.touched" style="color: #dc3545; font-size: 0.875rem; margin-top: 4px;">
+        <!-- Name Field -->
+        <div class="form-group">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control border" formControlName="name" placeholder="Enter teacher name">
+          <div *ngIf="teacherForm.get('name')?.invalid && teacherForm.get('name')?.touched" class="error-message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
             Name is required
           </div>
         </div>
-        <div class="form-group" style="margin-bottom: 16px;">
-          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Email</label>
-          <input type="email" class="form-control" formControlName="email" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
-          <div *ngIf="teacherForm.get('email')?.invalid && teacherForm.get('email')?.touched" style="color: #dc3545; font-size: 0.875rem; margin-top: 4px;">
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control border" formControlName="email" placeholder="teacher@example.com">
+          <div *ngIf="teacherForm.get('email')?.invalid && teacherForm.get('email')?.touched" class="error-message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
             Valid email is required
           </div>
         </div>
-        <div class="form-group" style="margin-bottom: 16px;" *ngIf="!isEditMode">
-          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Password</label>
-          <input type="password" class="form-control" formControlName="password" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
-          <div *ngIf="teacherForm.get('password')?.invalid && teacherForm.get('password')?.touched" style="color: #dc3545; font-size: 0.875rem; margin-top: 4px;">
+
+        <!-- Password Field (only for new teachers) -->
+        <div class="form-group" *ngIf="!isEditMode">
+          <label class="form-label">Password</label>
+          <div class="password-input-container">
+            <input [type]="showPassword ? 'text' : 'password'" class="form-control border" formControlName="password" placeholder="Create a password">
+            <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path *ngIf="!showPassword" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle *ngIf="!showPassword" cx="12" cy="12" r="3"></circle>
+                <path *ngIf="showPassword" d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line *ngIf="showPassword" x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+          <div *ngIf="teacherForm.get('password')?.invalid && teacherForm.get('password')?.touched" class="error-message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
             Password must be at least 6 characters
           </div>
         </div>
-        <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 12px;">
-          <button type="button" class="cancel-btn" (click)="modal.dismiss()" style="padding: 8px 16px; border: 1px solid #6c757d; background-color: white; color: #6c757d; border-radius: 6px; cursor: pointer; transition: all 0.2s;">Cancel</button>
-          <button type="submit" class="submit-btn" [disabled]="teacherForm.invalid" style="padding: 8px 16px; border: none; background-color: #2596be; color: white; border-radius: 6px; cursor: pointer; transition: all 0.2s;">
+
+        <!-- Image Upload -->
+        <div class="form-group border">
+          <label class="form-label">Teacher Image</label>
+          <div class="image-upload-container" (click)="fileInput.click()">
+            <input #fileInput type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+            <div class="upload-area" [class.has-image]="imagePreview || (isEditMode && teacherForm.value.imgUrl)">
+              <div *ngIf="!(imagePreview || (isEditMode && teacherForm.value.imgUrl))" class="upload-instructions">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"></path>
+                  <line x1="16" y1="5" x2="22" y2="5"></line>
+                  <line x1="19" y1="2" x2="19" y2="8"></line>
+                  <circle cx="9" cy="9" r="2"></circle>
+                  <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+                </svg>
+                <p>Click to upload image</p>
+                <small>JPG or PNG, max 2MB</small>
+              </div>
+
+              <div *ngIf="imagePreview" class="image-preview">
+                <img [src]="imagePreview" alt="Preview">
+                <button type="button" class="change-image-btn" (click)="$event.stopPropagation()">
+                  Change Image
+                </button>
+              </div>
+
+              <div *ngIf="isEditMode && teacherForm.value.imgUrl && !imagePreview" class="current-image">
+                <img [src]="teacherForm.value.imgUrl" alt="Current Image">
+                <button type="button" class="change-image-btn" (click)="$event.stopPropagation()">
+                  Change Image
+                </button>
+              </div>
+            </div>
+            <div *ngIf="isUploading" class="upload-progress">
+              <div class="progress-bar" [style.width]="uploadProgress + '%'"></div>
+              <span>Uploading... {{uploadProgress}}%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="teacherForm.invalid || isUploading">
             {{ isEditMode ? 'Update' : 'Register' }}
+            <span *ngIf="isUploading" class="spinner"></span>
           </button>
         </div>
       </form>
@@ -101,69 +197,32 @@
 
 <!-- Delete Confirmation Modal Template -->
 <ng-template #deleteModal let-modal>
-  <div class="delete-modal-container" style="background-color: white; border-radius: 10px; max-width: 500px; width: 100%;">
-    <div class="modal-header" style="padding: 16px; border-bottom: 1px solid #e9ecef; display: flex; justify-content: space-between; align-items: center;">
-      <h5 class="modal-title" style="margin: 0; color: #343a40; font-weight: 600;">Confirm Delete</h5>
-      <button type="button" class="close-btn" (click)="modal.dismiss()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6c757d;">&times;</button>
+  <div class="delete-modal-container">
+    <div class="modal-header">
+      <h5 class="modal-title">Confirm Delete</h5>
+      <button type="button" class="close-btn" (click)="modal.dismiss()" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
-    <div class="modal-body" style="padding: 16px;">
-      <p style="margin: 0; color: #343a40;">Are you sure you want to delete this teacher?</p>
+    <div class="modal-body">
+      <div class="delete-warning">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <p>Are you sure you want to delete this teacher?</p>
+        <p class="delete-subtext">This action cannot be undone.</p>
+      </div>
     </div>
-    <div class="modal-footer" style="padding: 16px; border-top: 1px solid #e9ecef; display: flex; justify-content: flex-end; gap: 12px;">
-      <button type="button" class="cancel-btn" (click)="modal.dismiss()" style="padding: 8px 16px; border: 1px solid #6c757d; background-color: white; color: #6c757d; border-radius: 6px; cursor: pointer; transition: all 0.2s;">Cancel</button>
-      <button type="button" class="delete-confirm-btn" (click)="deleteTeacher()" style="padding: 8px 16px; border: none; background-color: #dc3545; color: white; border-radius: 6px; cursor: pointer; transition: all 0.2s;">Delete</button>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Cancel</button>
+      <button type="button" class="btn btn-danger" (click)="deleteTeacher()">
+        Delete
+      </button>
     </div>
   </div>
 </ng-template>
-
-<style>
-  /* Hover effects */
-  .add-teacher-btn:hover {
-    background-color: #1e7a9c !important;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(37, 150, 190, 0.3);
-  }
-
-  .teacher-row:hover {
-    background-color: #f8f9fa !important;
-  }
-
-  .edit-btn:hover {
-    background-color: #2596be !important;
-    color: white !important;
-  }
-
-  .delete-btn:hover {
-    background-color: #dc3545 !important;
-    color: white !important;
-  }
-
-  .cancel-btn:hover {
-    background-color: #f8f9fa !important;
-  }
-
-  .submit-btn:hover:not(:disabled) {
-    background-color: #1e7a9c !important;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(37, 150, 190, 0.3);
-  }
-
-  .delete-confirm-btn:hover {
-    background-color: #c82333 !important;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
-  }
-
-  /* Disabled state */
-  .submit-btn:disabled {
-    background-color: #a0d1e6 !important;
-    cursor: not-allowed;
-  }
-
-  /* Focus states */
-  .search-input:focus,
-  .form-control:focus {
-    border-color: #2596be !important;
-    box-shadow: 0 0 0 2px rgba(37, 150, 190, 0.2) !important;
-  }
-</style>

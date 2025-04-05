@@ -1,11 +1,12 @@
 package com.example.mindbuilderbackend.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+
+
+@Getter
+@Setter
 @Entity
 @DiscriminatorValue("ADMIN")
 public class Admin extends User {

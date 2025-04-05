@@ -1,12 +1,18 @@
 package com.example.mindbuilderbackend.model;
 
 import com.example.mindbuilderbackend.model.enums.Role;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 import org.hibernate.annotations.DiscriminatorOptions;
 
-@Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorOptions(force = true)
@@ -21,6 +27,8 @@ public class User {
     private String name;
 
     private String email;
+
+    private String imgUrl;
 
     private String password;
 

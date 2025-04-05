@@ -9,4 +9,5 @@ public class TeacherDTO {
     private String name;
     private String email;
     private Role role;
+    private String imgUrl;
 }

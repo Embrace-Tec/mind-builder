@@ -20,6 +20,10 @@ export class StudentListComponent implements OnInit {
   studentForm: FormGroup;
   isEditMode = false;
   currentStudentId: number | null = null;
+  selectedImage: File | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
+  isUploading = false;
+  showPassword = false;
 
   constructor(
     private studentService: StudentService,
@@ -33,7 +37,8 @@ export class StudentListComponent implements OnInit {
       password: ['', Validators.minLength(6)],
       parentId: [null],
       studentRank: [0, [Validators.min(0)]],
-      totalMarks: [0, [Validators.min(0)]]
+      totalMarks: [0, [Validators.min(0)]],
+      imgUrl: ['']
     });
   }
 
@@ -42,11 +47,68 @@ export class StudentListComponent implements OnInit {
     this.loadParents();
   }
 
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedImage = file;
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+    const passwordControl = this.studentForm.get('password');
+    if (passwordControl) {
+      const input = document.querySelector('input[formControlName="password"]') as HTMLInputElement;
+      input.type = this.showPassword ? 'text' : 'password';
+    }
+  }
+  async uploadImage(): Promise<string> {
+    if (!this.selectedImage) return '';
+
+    this.isUploading = true;
+    const CLOUD_NAME = 'dsxmufxmq';
+    // const UPLOAD_PRESET = 'your-upload-preset';
+
+    const formData = new FormData();
+    formData.append('file', this.selectedImage);
+    formData.append('upload_preset', "mern-app");
+
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+        {
+          method: 'POST',
+          body: formData
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Image upload failed');
+      }
+
+      const data = await response.json();
+      return data.secure_url;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      throw error;
+    } finally {
+      this.isUploading = false;
+    }
+  }
+
   loadStudents(): void {
     this.studentService.getAllStudents().subscribe({
       next: (students) => {
         this.students = students;
         this.applyFilter();
+        console.log('Students:', students)
       },
       error: (err) => console.error('Error loading students', err)
     });
@@ -93,34 +155,50 @@ export class StudentListComponent implements OnInit {
       email: student.email,
       parentId: student.parent?.id || null,
       studentRank: student.studentRank,
-      totalMarks: student.totalMarks
+      totalMarks: student.totalMarks,
+      imgUrl: student.imgUrl // Ensure this is set
     });
     this.studentForm.get('password')?.clearValidators();
     this.modalService.open(content);
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.studentForm.invalid) return;
 
-    const studentData = this.studentForm.value;
+    try {
+      let imgUrl = '';
+      if (this.selectedImage) {
+        imgUrl = await this.uploadImage();
+      }
 
-    if (this.isEditMode && this.currentStudentId) {
-      this.studentService.updateStudent(this.currentStudentId, studentData).subscribe({
-        next: () => {
-          this.loadStudents();
-          this.modalService.dismissAll();
-        },
-        error: (err) => console.error('Error updating student', err)
-      });
-    } else {
-      this.studentService.registerStudent(studentData).subscribe({
-        next: () => {
-          this.loadStudents();
-          this.modalService.dismissAll();
-        },
-        error: (err) => console.error('Error registering student', err)
-      });
+      const studentData = {
+        ...this.studentForm.value,
+        imgUrl: imgUrl || this.studentForm.value.imgUrl
+      };
+
+      if (this.isEditMode && this.currentStudentId) {
+        await this.studentService.updateStudent(this.currentStudentId, studentData).toPromise();
+      } else {
+        await this.studentService.registerStudent(studentData).toPromise();
+      }
+
+      this.loadStudents();
+      this.modalService.dismissAll();
+      this.resetForm();
+    } catch (error) {
+      console.error('Error saving student:', error);
     }
+  }
+
+  resetForm(): void {
+    this.studentForm.reset({
+      studentRank: 0,
+      totalMarks: 0
+    });
+    this.selectedImage = null;
+    this.imagePreview = null;
+    this.isEditMode = false;
+    this.currentStudentId = null;
   }
 
   confirmDelete(content: any, id: number): void {

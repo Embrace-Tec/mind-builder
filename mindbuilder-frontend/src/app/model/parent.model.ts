@@ -4,6 +4,7 @@ export interface ParentDTOO {
   id: number;
   name: string;
   email: string;
+  imgUrl?: string;
   password?: string; // Only for registration
   children: any[]; // Remove optional modifier and always initialize as empty array
 }
@@ -11,5 +12,6 @@ export interface ParentDTOO {
 export interface RegisterParentRequest {
   name: string;
   email: string;
+  imgUrl?: string;
   password: string;
 }

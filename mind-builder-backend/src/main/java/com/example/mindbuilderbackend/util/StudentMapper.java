@@ -15,6 +15,7 @@ public class StudentMapper {
         dto.setName(student.getName());
         dto.setEmail(student.getEmail());
         dto.setRank(student.getStudentRank());
+        dto.setImgUrl(student.getImgUrl());
         dto.setTotalMarks(student.getTotalMarks());
 
         // Map parent to ParentDTO if exists
@@ -34,6 +35,7 @@ public class StudentMapper {
         student.setId(dto.getId());
         student.setName(dto.getName());
         student.setEmail(dto.getEmail());
+        student.setImgUrl(dto.getImgUrl());
         student.setStudentRank(dto.getRank());
         student.setTotalMarks(dto.getTotalMarks());
 

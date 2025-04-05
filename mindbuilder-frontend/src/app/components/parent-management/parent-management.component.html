@@ -86,6 +86,7 @@
           <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Name</label>
           <input type="text" class="form-control" formControlName="name" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
         </div>
+
         <div class="form-group" style="margin-bottom: 16px;">
           <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Email</label>
           <input type="email" class="form-control" formControlName="email" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
@@ -93,6 +94,31 @@
         <div class="form-group" style="margin-bottom: 16px;" *ngIf="!isEditMode">
           <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Password</label>
           <input type="password" class="form-control" formControlName="password" style="width: 100%; padding: 8px 12px; border: 1px solid #e9ecef; border-radius: 6px; color: #343a40; outline: none;">
+        </div>
+
+        <!-- Add this to your modal-body section, after the other form groups -->
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label class="form-label" style="display: block; margin-bottom: 6px; color: #343a40; font-weight: 500;">Parent Image</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" accept="image/*" style="width: 100%; padding: 8px 0; border: none; color: #343a40; outline: none;">
+
+          <!-- Image preview -->
+          <div *ngIf="imagePreview" style="margin-top: 10px;">
+            <img [src]="imagePreview" alt="Preview" style="max-width: 100px; max-height: 100px; border-radius: 4px;">
+          </div>
+
+          <!-- Current image (for edit mode) -->
+          <div *ngIf="isEditMode && parentForm.value.imgUrl && !imagePreview" style="margin-top: 10px;">
+            <img [src]="parentForm.value.imgUrl" alt="Current Image" style="max-width: 100px; max-height: 100px; border-radius: 4px;">
+            <p style="font-size: 12px; color: #6c757d; margin-top: 4px;">Current image</p>
+          </div>
+
+          <!-- Upload progress -->
+          <div *ngIf="isUploading" style="margin-top: 10px;">
+            <div style="height: 4px; background-color: #e9ecef; border-radius: 2px;">
+              <div [style.width.%]="uploadProgress" style="height: 100%; background-color: #2596be; border-radius: 2px;"></div>
+            </div>
+            <p style="font-size: 12px; color: #6c757d; margin-top: 4px;">Uploading... {{uploadProgress}}%</p>
+          </div>
         </div>
         <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 12px;">
           <button type="button" class="cancel-btn" (click)="closeModal()" style="padding: 8px 16px; border: 1px solid #6c757d; background-color: white; color: #6c757d; border-radius: 6px; cursor: pointer; transition: all 0.2s;">Cancel</button>

@@ -33,6 +33,7 @@ export class StudentService {
         name: dto.parent.name,
         email: dto.parent.email
       } : undefined,
+      imgUrl: dto.imgUrl,
       studentRank: dto.rank ?? dto.studentRank ?? 0,
       totalMarks: dto.marks ?? dto.totalMarks ?? 0
     };

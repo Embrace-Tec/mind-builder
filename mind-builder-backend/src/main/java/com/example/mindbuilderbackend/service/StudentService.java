@@ -56,6 +56,9 @@ public class StudentService{
         if (student.getPassword() != null) {
             existingStudent.setPassword(passwordEncoder.encode(student.getPassword()));
         }
+        if (student.getImgUrl() != null) {  // Add this condition
+            existingStudent.setImgUrl(student.getImgUrl());
+        }
         if (student.getParent() != null) {
             existingStudent.setParent(student.getParent());
         }
