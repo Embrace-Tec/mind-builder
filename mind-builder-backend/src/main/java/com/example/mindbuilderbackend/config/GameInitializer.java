@@ -8,12 +8,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 
-/**
- * @author : L.H.J
- * @File: GameInitializer
- * @mailto : lharshana2002@gmail.com
- * @created : 2025-05-07, Wednesday
- **/
 @Configuration
 public class GameInitializer {
 
