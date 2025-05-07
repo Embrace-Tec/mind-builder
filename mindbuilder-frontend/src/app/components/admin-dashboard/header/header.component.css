@@ -1,0 +1,105 @@
+/* Modern typography and animations */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.navbar {
+  transition: all 0.3s ease;
+}
+
+.animate-icon:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
+
+.animate-brand:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.animate-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1a6d8e !important;
+  transition: all 0.3s ease;
+}
+
+.animate-badge:hover {
+  background-color: #e9ecef !important;
+}
+
+.modern-search .form-control {
+  border-radius: 20px 0 0 20px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.modern-search .form-control:focus {
+  box-shadow: 0 0 10px rgba(37, 150, 190, 0.3);
+  border-color: #2596be;
+}
+
+.modern-search .btn {
+  border-radius: 0 20px 20px 0;
+  background-color: #1a6d8e;
+  border-color: #1a6d8e;
+  transition: all 0.3s ease;
+}
+
+.modern-search .btn:hover {
+  background-color: #155a75;
+  border-color: #155a75;
+}
+
+.animate-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.animate-dropdown:hover {
+  color: #e9ecef !important;
+  transition: color 0.3s ease;
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  background-color: #ffffff;
+  margin-top: 10px;
+  animation: slideDown 0.3s ease;
+}
+
+.modern-dropdown-item {
+  padding: 10px 15px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.modern-dropdown-item:hover {
+  background-color: #f1faff;
+  color: #2596be;
+  transform: translateX(5px);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  .modern-search .form-control {
+    font-size: 0.9rem;
+  }
+}

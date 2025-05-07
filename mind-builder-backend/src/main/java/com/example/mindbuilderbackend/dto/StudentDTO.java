@@ -9,6 +9,6 @@ public class StudentDTO {
     private String email;
     private String imgUrl;
     private ParentDTO parent;
-    private Integer rank;
+    private int rank;
     private Integer totalMarks;
 }
